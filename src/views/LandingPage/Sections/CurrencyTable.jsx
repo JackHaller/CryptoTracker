@@ -42,7 +42,7 @@ class CurrenyTable extends React.Component {
 
               var s = data.data
               for (var x in s) {
-                s[x].quotes.USD.price = "$" + s[x].quotes.USD.price.toLocaleString()
+                s[x].quotes.USD.price = "$" + s[x].quotes.USD.price
                 s[x].quotes.USD.market_cap = "$" + s[x].quotes.USD.market_cap.toLocaleString()
                 s[x].quotes.USD.volume_24h = "$" + s[x].quotes.USD.volume_24h.toLocaleString()
                 s[x].quotes.USD.percent_change_1h = s[x].quotes.USD.percent_change_1h + '%'
@@ -72,28 +72,58 @@ class CurrenyTable extends React.Component {
                 },
                 {
                   Header: "Price",
-                  accessor: "quotes.USD.price"
+                  accessor: "quotes.USD.price",
+                  sortMethod: (a, b) => {
+                    var a = Number(a.replace(/[^0-9\.-]+/g,""));
+                    var b = Number(b.replace(/[^0-9\.-]+/g,""));
+                    return a > b ? 1 : -1;
+                  }
                 },
                 {
                   ofText: 'of',
                   Header: "Market Cap",
-                  accessor: "quotes.USD.market_cap"
+                  accessor: "quotes.USD.market_cap",
+                  sortMethod: (a, b) => {
+                    var a = Number(a.replace(/[^0-9\.-]+/g,""));
+                    var b = Number(b.replace(/[^0-9\.-]+/g,""));
+                    return a > b ? 1 : -1;
+                  }
                 },
                 {
                   Header: "Volume 24h",
-                  accessor: "quotes.USD.volume_24h"
+                  accessor: "quotes.USD.volume_24h",
+                  sortMethod: (a, b) => {
+                    var a = Number(a.replace(/[^0-9\.-]+/g,""));
+                    var b = Number(b.replace(/[^0-9\.-]+/g,""));
+                    return a > b ? 1 : -1;
+                  }
                 },
                 {
                   Header: "change 1h",
-                  accessor: "quotes.USD.percent_change_1h"
+                  accessor: "quotes.USD.percent_change_1h",
+                  sortMethod: (a, b) => {
+                    var a = Number(a.replace(/[^0-9\.-]+/g,""));
+                    var b = Number(b.replace(/[^0-9\.-]+/g,""));
+                    return a > b ? 1 : -1;
+                  }
                 },
                 {
                   Header: "change 1d",
-                  accessor: "quotes.USD.percent_change_24h"
+                  accessor: "quotes.USD.percent_change_24h",
+                  sortMethod: (a, b) => {
+                    var a = Number(a.replace(/[^0-9\.-]+/g,""));
+                    var b = Number(b.replace(/[^0-9\.-]+/g,""));
+                    return a > b ? 1 : -1;
+                  }
                 },
                 {
                   Header: "change 7d",
-                  accessor: "quotes.USD.percent_change_7d"
+                  accessor: "quotes.USD.percent_change_7d",
+                  sortMethod: (a, b) => {
+                    var a = Number(a.replace(/[^0-9\.-]+/g,""));
+                    var b = Number(b.replace(/[^0-9\.-]+/g,""));
+                    return a > b ? 1 : -1;
+                  }
                 },
               ]}
 
