@@ -32,40 +32,33 @@ class CurrenyTable extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://api.coinmarketcap.com/v2/ticker/?structure=array')
-      .then((response) => {
-        var responseData = response.json();
-        if (response.status == 200) {
-          return responseData
-            .then((data) => {
-
-              var s = data.data
-              for (var x in s) {
-                s[x].quotes.USD.price = "$" + s[x].quotes.USD.price
-                s[x].quotes.USD.market_cap = "$" + s[x].quotes.USD.market_cap.toLocaleString()
-                s[x].quotes.USD.volume_24h = "$" + s[x].quotes.USD.volume_24h.toLocaleString()
-                s[x].quotes.USD.percent_change_1h = s[x].quotes.USD.percent_change_1h + '%'
-                s[x].quotes.USD.percent_change_24h = s[x].quotes.USD.percent_change_24h + '%'
-                s[x].quotes.USD.percent_change_7d = s[x].quotes.USD.percent_change_7d + '%' 
-              }
-              
-              this.setState({ data: s })
-            })
-        } else {
-          throw new Error('Server Error!');
-        }
-      })
-      //writeUserData()
+    writeCurrencyData()
+    var firebaseRef = firebase.database().ref("Currencies/data/");
+    firebaseRef.once('value')
+      .then((dataSnapshot) => {
+        this.setState({
+          data: dataSnapshot.val()
+      });
+   });
   }
 
   render() {
     const data = this.state.data;
+    var s = data
+    for (var x in s) {
+      s[x].quotes.USD.price = "$" + s[x].quotes.USD.price
+      s[x].quotes.USD.market_cap = "$" + s[x].quotes.USD.market_cap.toLocaleString()
+      s[x].quotes.USD.volume_24h = "$" + s[x].quotes.USD.volume_24h.toLocaleString()
+      s[x].quotes.USD.percent_change_1h = s[x].quotes.USD.percent_change_1h + '%'
+      s[x].quotes.USD.percent_change_24h = s[x].quotes.USD.percent_change_24h + '%'
+      s[x].quotes.USD.percent_change_7d = s[x].quotes.USD.percent_change_7d + '%' 
+    }
     return (
       <div>
         <Card className={classNames.textCenter}>
           <CardBody>
             <ReactTable
-              data={data}
+              data={s}
               columns={[
                 {
                   Header: "Currency",
@@ -138,20 +131,35 @@ class CurrenyTable extends React.Component {
   }
 }
 
-
-function writeUserData(userId, name, email, imageUrl) {
-  
-  //var database = firebase.database();
-  var userId = "1"
-  var name = "jack"
-  var email = "jhal"
-  var imageUrl = "jhal."
-  firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
+function writeCurrencyData(){
+  fetch('https://api.coinmarketcap.com/v2/ticker/?structure=array')
+  .then((response) => {
+    var responseData = response.json();
+    if (response.status == 200) {
+      return responseData
+        .then((data) => {
+          firebase.database().ref('Currencies/').set({
+            data : data.data,
+            metadata : data.metadata
+          });
+        })
+    } else {
+      throw new Error('Server Error!');
+    }
+  })
 }
+
+
+var config = {
+  apiKey: "AIzaSyApdOt_lT-3SFDsKilN-wb6G2zySxaQ0QY",
+  authDomain: "cryptotracker-bcd99.firebaseapp.com",
+  databaseURL: "https://cryptotracker-bcd99.firebaseio.com/",
+  storageBucket: "gs://cryptotracker-bcd99.appspot.com",
+};
+//firebase.initializeApp(config);
+var database = firebase.database();
+
+
 
 export default withStyles(currencyTableStyle)(CurrenyTable);
 
