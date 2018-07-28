@@ -21,8 +21,7 @@ import currencyTableStyle from "assets/jss/material-kit-react/views/currencyTabl
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 
-
-
+import firebase from "firebase";
 
 class CurrenyTable extends React.Component {
   constructor(props) {
@@ -49,12 +48,14 @@ class CurrenyTable extends React.Component {
                 s[x].quotes.USD.percent_change_24h = s[x].quotes.USD.percent_change_24h + '%'
                 s[x].quotes.USD.percent_change_7d = s[x].quotes.USD.percent_change_7d + '%' 
               }
+              
               this.setState({ data: s })
             })
         } else {
           throw new Error('Server Error!');
         }
       })
+      //writeUserData()
   }
 
   render() {
@@ -135,6 +136,21 @@ class CurrenyTable extends React.Component {
       </div>
     );
   }
+}
+
+
+function writeUserData(userId, name, email, imageUrl) {
+  
+  //var database = firebase.database();
+  var userId = "1"
+  var name = "jack"
+  var email = "jhal"
+  var imageUrl = "jhal."
+  firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
 }
 
 export default withStyles(currencyTableStyle)(CurrenyTable);

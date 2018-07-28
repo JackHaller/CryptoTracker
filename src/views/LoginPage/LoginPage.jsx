@@ -22,6 +22,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPageStyle.jsx";
 
 import firebase from "firebase";
+
 const dashboardRoutes = [];
 
 class LoginPage extends React.Component {
@@ -165,6 +166,12 @@ class LoginPage extends React.Component {
   }
 }
 
-
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user.displayName)
+  } else {
+    console.log("no user")
+  }
+});
 
 export default withStyles(loginPageStyle)(LoginPage);
