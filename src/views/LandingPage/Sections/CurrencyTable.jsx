@@ -27,11 +27,10 @@ class CurrenyTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
     };
   }
-
-  componentDidMount() {
+  updateCurrencyData() {
     writeCurrencyData()
     var firebaseRef = firebase.database().ref("Currencies/data/");
     firebaseRef.once('value')
@@ -42,23 +41,42 @@ class CurrenyTable extends React.Component {
    });
   }
 
+  componentDidMount() {
+    var firebaseRef = firebase.database().ref("Currencies/data/");
+    firebaseRef.once('value')
+      .then((dataSnapshot) => {
+        this.setState({
+          data: dataSnapshot.val()
+      });
+   });
+    this.interval = setInterval(() => this.updateCurrencyData(), 30000);
+
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     const data = this.state.data;
-    var s = data
-    for (var x in s) {
-      s[x].quotes.USD.price = "$" + s[x].quotes.USD.price
-      s[x].quotes.USD.market_cap = "$" + s[x].quotes.USD.market_cap.toLocaleString()
-      s[x].quotes.USD.volume_24h = "$" + s[x].quotes.USD.volume_24h.toLocaleString()
-      s[x].quotes.USD.percent_change_1h = s[x].quotes.USD.percent_change_1h + '%'
-      s[x].quotes.USD.percent_change_24h = s[x].quotes.USD.percent_change_24h + '%'
-      s[x].quotes.USD.percent_change_7d = s[x].quotes.USD.percent_change_7d + '%' 
+    //must turn into list for react table :(
+    var currencyList = []
+    for (var x in data) {
+      currencyList.push(data[x])
+    }
+    for (var x in currencyList) {
+      currencyList[x].quotes.USD.price = "$" + currencyList[x].quotes.USD.price
+      currencyList[x].quotes.USD.market_cap = "$" + currencyList[x].quotes.USD.market_cap.toLocaleString()
+      currencyList[x].quotes.USD.volume_24h = "$" + currencyList[x].quotes.USD.volume_24h.toLocaleString()
+      currencyList[x].quotes.USD.percent_change_1h = currencyList[x].quotes.USD.percent_change_1h + '%'
+      currencyList[x].quotes.USD.percent_change_24h = currencyList[x].quotes.USD.percent_change_24h + '%'
+      currencyList[x].quotes.USD.percent_change_7d = currencyList[x].quotes.USD.percent_change_7d + '%' 
     }
     return (
       <div>
         <Card className={classNames.textCenter}>
           <CardBody>
             <ReactTable
-              data={s}
+              data={currencyList}
               columns={[
                 {
                   Header: "Currency",
@@ -132,7 +150,7 @@ class CurrenyTable extends React.Component {
 }
 
 function writeCurrencyData(){
-  fetch('https://api.coinmarketcap.com/v2/ticker/?structure=array')
+  fetch('https://api.coinmarketcap.com/v2/ticker/')
   .then((response) => {
     var responseData = response.json();
     if (response.status == 200) {
@@ -150,6 +168,7 @@ function writeCurrencyData(){
 }
 
 
+writeCurrencyData()
 var config = {
   apiKey: "AIzaSyApdOt_lT-3SFDsKilN-wb6G2zySxaQ0QY",
   authDomain: "cryptotracker-bcd99.firebaseapp.com",
