@@ -1,0 +1,91 @@
+[debug] [2018-07-28T01:36:06.090Z] ----------------------------------------------------------------------
+[debug] [2018-07-28T01:36:06.093Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jackh\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-07-28T01:36:06.093Z] CLI Version:   4.0.0
+[debug] [2018-07-28T01:36:06.093Z] Platform:      win32
+[debug] [2018-07-28T01:36:06.093Z] Node Version:  v8.11.3
+[debug] [2018-07-28T01:36:06.093Z] Time:          Sat Jul 28 2018 13:36:06 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:36:06.093Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-07-28T01:36:06.148Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-28T01:36:06.149Z] > authorizing via signed-in user
+[debug] [2018-07-28T01:36:06.151Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-07-28T01:36:06.151Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/E6z3Y-du4XWFxo7cE53PayYx9Ar0uXbCQpSwtNeDpaU',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Jul 28 2018 13:36:06 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:36:06.656Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-28T01:36:06.663Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cryptotracker-bcd99  
+  
+ Sat Jul 28 2018 13:36:06 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:36:07.992Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-28T01:36:07.992Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cryptotracker-bcd99/tokens  
+  
+ Sat Jul 28 2018 13:36:07 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:36:08.787Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-28T01:36:08.788Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/cryptotracker-bcd99  
+  
+ Sat Jul 28 2018 13:36:08 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:36:10.472Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\jackh\Desktop\CryptoTracker'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-07-28T01:36:23.325Z] Fetching environment
+[debug] [2018-07-28T01:36:23.328Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/721305968786:getServerAppConfig  
+  
+ Sat Jul 28 2018 13:36:23 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:36:23.329Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/721305968786/clients/_:getWebAppConfig  
+  
+ Sat Jul 28 2018 13:36:23 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:36:24.761Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-28T01:36:24.762Z] Starting @google-cloud/functions-emulator
+[debug] [2018-07-28T01:36:24.788Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: build
+[info] +  hosting: Local server: http://localhost:5000
+
+[debug] [2018-07-28T01:36:30.294Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
+[debug] [2018-07-28T01:49:39.678Z] ----------------------------------------------------------------------
+[debug] [2018-07-28T01:49:39.681Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jackh\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-07-28T01:49:39.681Z] CLI Version:   4.0.0
+[debug] [2018-07-28T01:49:39.681Z] Platform:      win32
+[debug] [2018-07-28T01:49:39.681Z] Node Version:  v8.11.3
+[debug] [2018-07-28T01:49:39.682Z] Time:          Sat Jul 28 2018 13:49:39 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:49:39.682Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-07-28T01:49:39.695Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-28T01:49:39.696Z] > authorizing via signed-in user
+[debug] [2018-07-28T01:49:39.699Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cryptotracker-bcd99  
+  
+ Sat Jul 28 2018 13:49:39 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:49:41.051Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-28T01:49:41.051Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cryptotracker-bcd99/tokens  
+  
+ Sat Jul 28 2018 13:49:41 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:49:41.918Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-28T01:49:41.919Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/cryptotracker-bcd99  
+  
+ Sat Jul 28 2018 13:49:41 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:49:43.467Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\jackh\Desktop\CryptoTracker'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-07-28T01:49:44.393Z] Fetching environment
+[debug] [2018-07-28T01:49:44.396Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/721305968786:getServerAppConfig  
+  
+ Sat Jul 28 2018 13:49:44 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:49:44.397Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/721305968786/clients/_:getWebAppConfig  
+  
+ Sat Jul 28 2018 13:49:44 GMT+1200 (New Zealand Standard Time)
+[debug] [2018-07-28T01:49:45.713Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-28T01:49:45.714Z] Starting @google-cloud/functions-emulator
+[debug] [2018-07-28T01:49:45.725Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: build
+[info] +  hosting: Local server: http://localhost:5000
+
+[debug] [2018-07-28T01:49:47.756Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.

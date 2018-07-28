@@ -58,7 +58,6 @@ class FovoritesPage extends React.Component {
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem md={12}>
-                <CurrencyTable />
               </GridItem>
             </GridContainer>
           </div>

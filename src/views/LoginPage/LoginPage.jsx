@@ -21,6 +21,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPageStyle.jsx";
 
+import firebase from "firebase";
 const dashboardRoutes = [];
 
 class LoginPage extends React.Component {
@@ -40,7 +41,20 @@ class LoginPage extends React.Component {
       700
     );
   }
-  
+  signInWithGoogle = () => {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  }
+  signInWithFacebook = () => {
+    var provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  }
+
+
+  signOut = () => {
+    firebase.auth().signOut();
+  }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -70,28 +84,17 @@ class LoginPage extends React.Component {
                       <div className={classes.socialLine}>
                         <Button
                           justIcon
-                          href="#pablo"
                           target="_blank"
                           color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                          <i className={"fab fa-twitter"} />
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
+                          onClick={this.signInWithFacebook}
                         >
                           <i className={"fab fa-facebook"} />
                         </Button>
                         <Button
                           justIcon
-                          href="#pablo"
                           target="_blank"
                           color="transparent"
-                          onClick={e => e.preventDefault()}
+                          onClick={this.signInWithGoogle}
                         >
                           <i className={"fab fa-google-plus-g"} />
                         </Button>
@@ -161,5 +164,7 @@ class LoginPage extends React.Component {
     );
   }
 }
+
+
 
 export default withStyles(loginPageStyle)(LoginPage);
