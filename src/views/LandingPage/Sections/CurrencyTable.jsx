@@ -1,27 +1,16 @@
 import React from "react";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-
 import classNames from "classnames";
-// @material-ui/icons
-
-// core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-//import CustomInput from "components/CustomInput/CustomInput.jsx";
-//import Button from "components/CustomButtons/Button.jsx";
-
-
 
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-import currencyTableStyle from "assets/jss/material-kit-react/views/currencyTableStyle.jsx";
+import firebase from "firebase";
 
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import currencyTableStyle from "assets/jss/material-kit-react/views/currencyTableStyle.jsx";
 
-import firebase from "firebase";
 
 class CurrenyTable extends React.Component {
   constructor(props) {
@@ -32,7 +21,7 @@ class CurrenyTable extends React.Component {
   }
   updateCurrencyData() {
     writeCurrencyData()
-    var firebaseRef = firebase.database().ref("Currencies/data/");
+    var firebaseRef = database.ref("Currencies/data/");
     firebaseRef.once('value')
       .then((dataSnapshot) => {
         this.setState({
@@ -42,7 +31,7 @@ class CurrenyTable extends React.Component {
   }
 
   componentDidMount() {
-    var firebaseRef = firebase.database().ref("Currencies/data/");
+    var firebaseRef = database.ref("Currencies/data/");
     firebaseRef.once('value')
       .then((dataSnapshot) => {
         this.setState({
@@ -139,7 +128,7 @@ class CurrenyTable extends React.Component {
                 },
               ]}
 
-              defaultPageSize={15}
+              defaultPageSize={100}
               className="-striped -highlight"
             />
           </CardBody>
@@ -156,7 +145,7 @@ function writeCurrencyData(){
     if (response.status == 200) {
       return responseData
         .then((data) => {
-          firebase.database().ref('Currencies/').set({
+          database.ref('Currencies/').set({
             data : data.data,
             metadata : data.metadata
           });
@@ -167,18 +156,7 @@ function writeCurrencyData(){
   })
 }
 
-
-writeCurrencyData()
-var config = {
-  apiKey: "AIzaSyApdOt_lT-3SFDsKilN-wb6G2zySxaQ0QY",
-  authDomain: "cryptotracker-bcd99.firebaseapp.com",
-  databaseURL: "https://cryptotracker-bcd99.firebaseio.com/",
-  storageBucket: "gs://cryptotracker-bcd99.appspot.com",
-};
-//firebase.initializeApp(config);
 var database = firebase.database();
-
-
 
 export default withStyles(currencyTableStyle)(CurrenyTable);
 

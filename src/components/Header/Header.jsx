@@ -16,6 +16,20 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import headerStyle from "assets/jss/material-kit-react/components/headerStyle.jsx";
 
+import firebase from "firebase";
+import firebaseapp from "../../firebase.js"
+
+var authObject = firebase.auth()
+
+authObject.onAuthStateChanged(function(user) {
+  if (user) {
+    
+  } else {
+    console.log("no user")-
+    authObject.signOut();
+  }
+})
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +39,7 @@ class Header extends React.Component {
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
     this.headerColorChange = this.headerColorChange.bind(this);
   }
+  
   handleDrawerToggle() {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   }

@@ -9,7 +9,6 @@ import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import Footer from "components/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -21,7 +20,10 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPageStyle.jsx";
 
+import MenuAppBar from "../MenuAppBar.jsx" ;
 import firebase from "firebase";
+
+import firebaseapp from "../../firebase.js"
 
 const dashboardRoutes = [];
 
@@ -44,30 +46,33 @@ class LoginPage extends React.Component {
   }
   signInWithGoogle = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+    authObject.signInWithPopup(provider);
   }
   signInWithFacebook = () => {
     var provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+    authObject.signInWithPopup(provider);
   }
 
-
-  signOut = () => {
-    firebase.auth().signOut();
+  signInWithEmail = (email ,password) => {
+    authObject.createUserAndRetrieveDataWithEmailAndPassword(
+      email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+        });
   }
 
   render() {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        <Header
-          color="dark"
-          routes={dashboardRoutes}
-          brand="Crypto Tracker"
-          rightLinks={<HeaderLinks />}
-          fixed
-          {...rest}
-        />
+        <MenuAppBar/>
         <div
           className={classes.pageHeader}
           style={{
@@ -165,19 +170,8 @@ class LoginPage extends React.Component {
     );
   }
 }
-var config = {
-  apiKey: "AIzaSyApdOt_lT-3SFDsKilN-wb6G2zySxaQ0QY",
-  authDomain: "cryptotracker-bcd99.firebaseapp.com",
-  databaseURL: "https://cryptotracker-bcd99.firebaseio.com/",
-  storageBucket: "gs://cryptotracker-bcd99.appspot.com",
-};
-firebase.initializeApp(config);
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    console.log(user.displayName)
-  } else {
-    console.log("no user")
-  }
-});
+
+var authObject = firebase.auth()
+
 
 export default withStyles(loginPageStyle)(LoginPage);
