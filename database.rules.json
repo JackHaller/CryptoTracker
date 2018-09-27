@@ -1,6 +1,22 @@
 {
-  "rules": {
-    ".read": true,
-    ".write": true
+	"rules": {
+		"users": {
+    	"$uid": {
+      	".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+		"TrackedCoins": {
+   		".read": true,
+    	".write": true
+		},
+		"HistroicalData": {
+   		".read": true,
+    	".write": true
+  	},
+    "CurrentData": {
+   		".read": true,
+    	".write": true
+  	}
   }
 }

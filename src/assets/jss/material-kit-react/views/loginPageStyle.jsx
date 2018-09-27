@@ -23,7 +23,7 @@ const loginPageStyle = {
     border: "0",
     alignItems: "center",
     "&:before": {
-      background: "rgba(0, 0, 0, 0.5)"
+      background: "#303030"
     },
     "&:before,&:after": {
       position: "absolute",

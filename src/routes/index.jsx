@@ -1,9 +1,10 @@
 
-import LoginPage from "views/LoginPage/LoginPage.jsx";
-import FavoritesPage from "views/FavoritesPage/FavoritesPage.jsx";
-import PortfolioPage from "views/PortfolioPage/PortfolioPage.jsx";
-import LandingPage from "views/LandingPage/LandingPage.jsx";
-import currency from "views/LandingPage/Sections/CurrencyTable.jsx";
+import LoginPage from "views/LoginPage.jsx";
+import FavoritesPage from "views/FavoritesPage.jsx";
+import PortfolioPage from "views/PortfolioPage.jsx";
+import LandingPage from "views/LandingPage.jsx";
+import currency from "views/components/CurrencyTable.jsx";
+
 
 var indexRoutes = [
   { path: "/login-page", name: "LoginPage", component: LoginPage },

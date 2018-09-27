@@ -6,7 +6,7 @@ const landingPageStyle = {
     zIndex: "2",
     position: "relative",
     paddingTop: "10vh",
-    color: "#FFFFFF"
+    color: "#000000"
   },
   pageHeader: {
     minHeight: "100vh",
@@ -19,34 +19,7 @@ const landingPageStyle = {
     border: "0",
     alignItems: "center",
   },
-  form: {
-    margin: "0"
-  },
-  cardHeader: {
-    width: "auto",
-    textAlign: "center",
-    marginLeft: "20px",
-    marginRight: "20px",
-    marginTop: "-40px",
-    padding: "20px 0",
-    marginBottom: "15px"
-  },
-  divider: {
-    marginTop: "30px",
-    marginBottom: "0px",
-    textAlign: "center"
-  },
-  cardFooter: {
-    paddingTop: "0rem",
-    border: "0",
-    borderRadius: "6px",
-    justifyContent: "center !important"
-  },
-  socialLine: {
-    marginTop: "1rem",
-    textAlign: "center",
-    padding: "0"
-  },
+  
 };
 
 
